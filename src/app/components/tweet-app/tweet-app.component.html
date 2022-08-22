@@ -1,0 +1,72 @@
+<app-tweet-app-headerbar></app-tweet-app-headerbar>
+<div style="margin-top: 10%;">
+
+    <div class="container">
+    <div *ngIf="!anotherTweetBool">
+        <h3><fa-icon [icon]="profileIcon"></fa-icon>
+        Welcome @{{userName}}</h3>
+        <div>
+            <textarea style="width: 100%; height: 5rem;" placeholder="What's happening?" [(ngModel)]="addTweetMessage"
+                (change)="onchangeTweet()" [mention]="items"></textarea>
+        </div>
+        <div>
+            <button style="margin-top: 1%; margin-left: 90%;" [disabled]="disableButton" class="btn btn-success"
+                type="button" (click)="addTweet()"> Add Tweet </button>
+        </div>
+    </div>
+        <ng-container *ngFor="let tweet of allTweet">
+            <div class="userTweet">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <b>{{tweet.userName}} : </b> {{tweet.tweet}}
+                    </div>
+                    <div class="col-sm-3" style="text-align: right" id="actionButtonsWrapper">
+
+
+                        <fa-icon [icon]="editIcon" *ngIf="userName == tweet.userName" size="2x"
+                            [styles]="{'margin':'5px'}" (click)="editTweet(tweet)"></fa-icon>
+
+                        <fa-icon [icon]="replyIcon" (click)="replyToTweet(tweet)" [styles]="{'margin':'5px'}" size="2x">
+                        </fa-icon>
+
+                        <fa-icon [icon]="likeIcon" (click)="likeTweet(tweet)"
+                            [style.color]="tweet.myLike ? 'red' : 'white'"
+                            [styles]="{'margin':'5px','background':'transparent'}" size="2x">
+
+                        </fa-icon>
+                        {{tweet.likeCount}}
+
+                        <fa-icon [icon]="deleteIcon" *ngIf="userName == tweet.userName"
+                            [styles]="{'margin':'5px','color':'red'}" (click)="deleteTweet(tweet)" size="2x"
+                            (click)="editTweet(tweet)"></fa-icon>
+                    </div>
+                </div>
+                <div *ngIf="tweet.editTweetBool">
+                    <textarea style="width: 100%; height: 1.5rem;" placeholder="Edited to Tweet"
+                        [(ngModel)]="tweet.tweet"></textarea>
+                    <button [disabled]="!tweet.tweet" class="replyButton" type="button" (click)="updateTweet(tweet)">
+                        Save Tweet </button>
+                    <button class="cancelButton" type="button" (click)="tweet.editTweetBool = false;"> Cancel </button>
+                </div>
+
+                <div *ngIf="tweet.takeReplyBool">
+                    <textarea style="width: 100%; height: 1.5rem;" placeholder="Reply to Tweet"
+                        [(ngModel)]="replayTweetMessage" [mention]="items"></textarea>
+                    <button [disabled]="!replayTweetMessage" class="replyButton" type="button"
+                        (click)="replyTweet(tweet)"> Reply Tweet </button>
+                    <button class="cancelButton" type="button" (click)="tweet.takeReplyBool = false;"> Cancel </button>
+                </div>
+                <div style="clear:both"></div>
+                <ng-container *ngFor="let reply of tweet.reply">
+                    <b>replies: {{reply.userName}}</b>
+                    {{reply.reply}}
+                    <br>
+                </ng-container>
+
+                <br>
+            </div>
+        </ng-container>
+
+    </div>
+
+</div>

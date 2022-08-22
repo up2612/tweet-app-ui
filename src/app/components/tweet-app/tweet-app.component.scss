@@ -1,0 +1,21 @@
+.userTweet {
+    background-color: lightgreen;
+    margin: 5px 0;
+    padding: 10px;
+    #actionButtonsWrapper {
+         & > button {
+            margin: 0 5px;
+             background: #000; //transparent
+             color: #fff;
+         }
+    }
+    .replyButton {
+        background-color: red;
+        color: #fff;
+    }
+    .cancelButton {
+        background-color: cyan;
+        color: #000;
+        border-color:1px solid #000;
+    }
+}

@@ -1,0 +1,40 @@
+<div style="margin-left: 30%;" [style.max-height.px]="maxHeight">
+    <h2>Foegot Password</h2>
+
+
+    <span>Username:</span>
+    <div>
+        <input type="text" (change)="onChangeAttr()" [(ngModel)]="userName">
+    </div>
+    <div [hidden]="userName">
+        <div class="error align-left">Field is Required</div>
+    </div>
+
+    <span>Password:</span>
+    <div>
+        <input type="password" (change)="onChangeAttr()" [(ngModel)]="passWord">
+    </div>
+    <div [hidden]="passWord">
+        <div class="error align-left">Field is Required</div>
+    </div>
+
+    <span>Confirm Password:</span>
+    <div>
+        <input type="password" (change)="onChangeAttr()" [(ngModel)]="confirmPassWord">
+    </div>
+    <div [hidden]="confirmPassWord">
+        <div class="error align-left">Field is Required</div>
+    </div>
+    <div [hidden]="(passWord === confirmPassWord)">
+        <div class="error align-left">PassWord and ConfirmPassWord Must be Same</div>
+    </div>
+
+    <div>
+        <button style="margin-top: 3%;" [disabled]="disabledButton" type="button" class="btn btn-success"
+            (click)="changePassWord()"> Change Password </button>
+    </div>
+    <div>
+        <button style="margin-top: 3%;" class="btn" class="btn btn-primary" type="button" (click)="cancel()"> Cancel
+        </button>
+    </div>
+</div>

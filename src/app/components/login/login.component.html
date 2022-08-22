@@ -1,0 +1,29 @@
+<div style="margin-left: 40%;">
+    <h1>Login Page</h1>
+    <div>
+
+        <span>Username:</span>
+        <div>
+            <input type="text" (change)="onchangeUserName()" [(ngModel)]="userName">
+        </div>
+
+        <span>Password:</span>
+        <div>
+            <input type="password" (change)="onchangePassWord()" [(ngModel)]="passWord">
+        </div>
+
+        <div>
+            <button style="margin-top: 3%;" [disabled]="disableButton" class="btn btn-success" type="button"
+                (click)="login()"> Login </button>
+        </div>
+
+        <div>
+            <button style="margin-top: 3%;" class="btn btn-primary" type="button" (click)="forgot()"> Forgot Password?
+            </button>
+        </div>
+        <div>
+            <button style="margin-top: 3%;" class="btn btn-primary" type="button" (click)="register()">Don't Have an
+                Account? SignUp</button>
+        </div>
+    </div>
+</div>
