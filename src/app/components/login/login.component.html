@@ -4,12 +4,12 @@
         <h1>Login Page</h1>
         <span><b>Username:</b></span>
         <div>
-            <input type="text" (change)="onchangeUserName()" [(ngModel)]="userName">
+            <input type="text" (input)="onchangeUserName()" [(ngModel)]="userName">
         </div>
 
         <span><b>Password:</b></span>
         <div>
-            <input type="password" (change)="onchangePassWord()" [(ngModel)]="passWord">
+            <input type="password" (input)="onchangePassWord()" [(ngModel)]="passWord">
         </div>
 
         <div>

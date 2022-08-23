@@ -47,18 +47,24 @@
 
             <span><b>Email Id:</b></span>
             <div>
-                <input type="text" (change)="changeFunction()" [(ngModel)]="email">
+                <input type="text" (change)="changeFunction();checkEmail()" [(ngModel)]="email">
             </div>
             <div [hidden]="email">
                 <div class="error align-left">Field is Required</div>
             </div>
+            <div *ngIf="inValidEmail">
+                <div class="error align-left">Invalid Format</div>
+            </div>
 
             <span><b>Contact Number:</b></span>
             <div>
-                <input type="text" (change)="changeFunction()" [(ngModel)]="contactNo">
+                <input type="text" (change)="changeFunction();checkPhone()" [(ngModel)]="contactNo">
             </div>
             <div [hidden]="contactNo">
                 <div class="error align-left">Field is Required</div>
+            </div>
+            <div *ngIf="inValidPhone">
+                <div class="error align-left">contactNumber should have 10 digits starting with nonzero</div>
             </div>
 
             <div>

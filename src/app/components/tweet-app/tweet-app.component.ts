@@ -15,6 +15,9 @@ export class TweetAppComponent implements OnInit {
   userName: any;
   disableButton: boolean = true;
   disableButtonReplyTweet: boolean = true;
+  invalidAddTweet:boolean = false;
+  invalidReplyTweet:boolean = false;
+  invalidEditTweet:boolean = false;
   addTweetMessage: any;
   allTweet: any;
   replayTweetMessage: any;
@@ -81,8 +84,12 @@ export class TweetAppComponent implements OnInit {
     }
   }
   onchangeTweet() {
-    if (this.addTweetMessage != undefined && this.addTweetMessage != null && this.addTweetMessage.length > 0) {
+    if (this.addTweetMessage != undefined && this.addTweetMessage != null 
+      && this.addTweetMessage.length > 0) {
       this.disableButton = false;
+    }
+    else{
+      this.disableButton = true;
     }
   }
 
@@ -184,5 +191,34 @@ export class TweetAppComponent implements OnInit {
 
   destroySessionStorage() {
     sessionStorage.clear();
+  }
+
+  checkTweet(){
+    if(this.addTweetMessage.length >= 144){
+      this.invalidAddTweet = true;
+    }
+    else{
+      this.invalidAddTweet = false;
+    }
+    this.onchangeTweet();
+  }
+
+  checkTweetReply(tweet:any){
+    if(this.replayTweetMessage.length >= 144){
+      tweet.invalidReplyTweet = true;
+    }
+    else{
+      tweet.invalidReplyTweet = false;
+    }
+  }
+
+  checkTweetEdit(tweet:any){
+    console.log(tweet);
+    if(tweet.tweet.length >= 144){
+      tweet.invalidEditTweet = true;
+    }
+    else{
+      tweet.invalidEditTweet = false;
+    }
   }
 }
