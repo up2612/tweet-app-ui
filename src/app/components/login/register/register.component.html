@@ -3,23 +3,23 @@
         <h2>Registration Page</h2>
     <div >
         <div>
-            <span>Username:</span>
+            <span><b>Username:</b></span>
             <div>
-                <input type="text" (change)="changeUserName()" [(ngModel)]="userName">
+                <input type="text" (change)="changeFunction()" [(ngModel)]="userName">
             </div>
             <div [hidden]="userName">
                 <div class="error align-left">Field is Required</div>
             </div>
-            <span>Password:</span>
+            <span><b>Password:</b></span>
             <div>
-                <input type="password" (change)="changePassWord()" [(ngModel)]="passWord">
+                <input type="password" (change)="changeFunction()" [(ngModel)]="passWord">
             </div>
             <div [hidden]="passWord">
                 <div class="error align-left">Field is Required</div>
             </div>
-            <span>Confirm Password:</span>
+            <span><b>Confirm Password:</b></span>
             <div>
-                <input type="password" (change)="changeConfirmPassWord()" [(ngModel)]="confirmPassWord">
+                <input type="password" (change)="changeFunction()" [(ngModel)]="confirmPassWord">
             </div>
             <div [hidden]="confirmPassWord">
                 <div class="error align-left">Field is Required</div>
@@ -29,44 +29,44 @@
             </div>
 
 
-            <span>First Name:</span>
+            <span><b>First Name:</b></span>
             <div>
-                <input type="text" (change)="changeFirstName()" [(ngModel)]="firstName">
+                <input type="text" (change)="changeFunction()" [(ngModel)]="firstName">
             </div>
             <div [hidden]="firstName">
                 <div class="error align-left">Field is Required</div>
             </div>
 
-            <span>Last Name:</span>
+            <span><b>Last Name:</b></span>
             <div>
-                <input type="text" (change)="changeLastName()" [(ngModel)]="lastName">
+                <input type="text" (change)="changeFunction()" [(ngModel)]="lastName">
             </div>
             <div [hidden]="lastName">
                 <div class="error align-left">Field is Required</div>
             </div>
 
-            <span>Email Id:</span>
+            <span><b>Email Id:</b></span>
             <div>
-                <input type="text" (change)="changeEmailId()" [(ngModel)]="email">
+                <input type="text" (change)="changeFunction()" [(ngModel)]="email">
             </div>
             <div [hidden]="email">
                 <div class="error align-left">Field is Required</div>
             </div>
 
-            <span>Contact Number:</span>
+            <span><b>Contact Number:</b></span>
             <div>
-                <input type="text" (change)="changeCotactNo()" [(ngModel)]="contactNo">
+                <input type="text" (change)="changeFunction()" [(ngModel)]="contactNo">
             </div>
             <div [hidden]="contactNo">
                 <div class="error align-left">Field is Required</div>
             </div>
 
             <div>
-                <button style="margin-top: 3%;" [disabled]="disabledButton" type="button" class="btn btn-success"
+                <button [disabled]="disabledButton" type="button" class="btn btn-success button"
                     (click)="register()"> Register </button>
             </div>
             <div>
-                <button style="margin-top: 3%;" type="button" class="btn btn-primary" (click)="cancel()"> Cancel
+                <button type="button" class="btn btn-primary button" (click)="cancel()"> Cancel
                 </button>
             </div>
         </div>

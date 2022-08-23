@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faHeart, faPenToSquare, faReply, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faCommentDots, faCommenting, faHeart, faPenToSquare, faReply, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 import { TweetServiceService } from 'src/app/services/tweet-service.service';
@@ -19,7 +19,7 @@ export class TweetAppComponent implements OnInit {
   allTweet: any;
   replayTweetMessage: any;
   editIcon = faPenToSquare;
-  replyIcon = faReply;
+  replyIcon = faCommentDots;
   likeIcon = faHeart;
   deleteIcon = faTrash;
   profileIcon = faUser;
@@ -41,18 +41,21 @@ export class TweetAppComponent implements OnInit {
     if (sessionStorage.getItem("MYTWEETBOOL") === 'Y' ? true : false) {
       this.tweetService.getUserTweet(this.userName).subscribe((result) => {
         this.allTweet = result;
+        this.allTweet = this.allTweet.reverse();
         this.manipulationTweet();
       });
     }
     else if (sessionStorage.getItem("ANOTHERTWEETBOOL") === 'Y' ? true : false) {
       this.tweetService.getUserTweet(sessionStorage.getItem("ANOTHERTWEETUSERNAME")).subscribe((result) => {
         this.allTweet = result;
+        this.allTweet = this.allTweet.reverse();
         this.manipulationTweet();
       });
     }
     else {
       this.tweetService.getAllTweet().subscribe((result) => {
         this.allTweet = result;
+        this.allTweet = this.allTweet.reverse();
         this.manipulationTweet();
       },
         err => {
@@ -180,10 +183,6 @@ export class TweetAppComponent implements OnInit {
   }
 
   destroySessionStorage() {
-    sessionStorage.removeItem("TWEET_TOKEN");
-    sessionStorage.removeItem("USERNAME");
-    sessionStorage.removeItem("MYTWEETBOOL");
-    sessionStorage.removeItem("ANOTHERTWEETBOOL");
-    sessionStorage.removeItem("ANOTHERTWEETUSERNAME");
+    sessionStorage.clear();
   }
 }

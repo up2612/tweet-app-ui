@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
     });
   }
   register() {
-    console.log("Clicked..")
     const dialogRef = this.dialog.open(RegisterComponent, {
       width: '35rem',
       panelClass: 'import-dialog-container',
@@ -85,10 +84,6 @@ export class LoginComponent implements OnInit {
 
   }
   destroySessionStorage() {
-    sessionStorage.removeItem("TWEET_TOKEN");
-    sessionStorage.removeItem("USERNAME");
-    sessionStorage.removeItem("MYTWEETBOOL");
-    sessionStorage.removeItem("ANOTHERTWEETBOOL");
-    sessionStorage.removeItem("ANOTHERTWEETUSERNAME");
+    sessionStorage.clear();
   }
 }

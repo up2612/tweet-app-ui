@@ -1,21 +1,28 @@
-.userTweet {
-    background-color: lightgreen;
-    margin: 5px 0;
-    padding: 10px;
-    #actionButtonsWrapper {
-         & > button {
-            margin: 0 5px;
-             background: #000; //transparent
-             color: #fff;
-         }
-    }
-    .replyButton {
-        background-color: red;
-        color: #fff;
-    }
-    .cancelButton {
-        background-color: cyan;
-        color: #000;
-        border-color:1px solid #000;
+
+
+.tweet-app-main{
+    background-color: aliceblue;
+    #tweetAppWrapper{
+        .userTweet {
+            background-color: lightskyblue;
+            margin: 5px 0;
+            padding: 10px;
+            #actionButtonsWrapper {
+                 & > button {
+                    margin: 0 5px;
+                     background: transparent; //transparent
+                     color: #fff;
+                 }
+            }
+            .replyButton {
+                background-color:green;
+                color: #fff;
+            }
+            .cancelButton {
+                background-color: red;
+                color: #000;
+                border-color:1px solid #000;
+            }
+        }
     }
 }

@@ -122,10 +122,6 @@ export class TweetAppHeaderbarComponent implements OnInit {
   }
 
   destroySessionStorage() {
-    sessionStorage.removeItem("TWEET_TOKEN");
-    sessionStorage.removeItem("USERNAME");
-    sessionStorage.removeItem("MYTWEETBOOL");
-    sessionStorage.removeItem("ANOTHERTWEETBOOL");
-    sessionStorage.removeItem("ANOTHERTWEETUSERNAME");
+    sessionStorage.clear();
   }
 }

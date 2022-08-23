@@ -1,28 +1,29 @@
-<div style="margin-left: 40%;">
-    <h1>Login Page</h1>
-    <div>
+<div class="login-main">
 
-        <span>Username:</span>
+    <div id="loginWrapper">
+        <h1>Login Page</h1>
+        <span><b>Username:</b></span>
         <div>
             <input type="text" (change)="onchangeUserName()" [(ngModel)]="userName">
         </div>
 
-        <span>Password:</span>
+        <span><b>Password:</b></span>
         <div>
             <input type="password" (change)="onchangePassWord()" [(ngModel)]="passWord">
         </div>
 
         <div>
-            <button style="margin-top: 3%;" [disabled]="disableButton" class="btn btn-success" type="button"
-                (click)="login()"> Login </button>
+            <button [disabled]="disableButton" class="btn btn-success button" type="button" (click)="login()"> Login
+            </button>
         </div>
 
         <div>
-            <button style="margin-top: 3%;" class="btn btn-primary" type="button" (click)="forgot()"> Forgot Password?
+            <button class="btn btn-primary button" type="button" (click)="forgot()"> Forgot
+                Password?
             </button>
         </div>
         <div>
-            <button style="margin-top: 3%;" class="btn btn-primary" type="button" (click)="register()">Don't Have an
+            <button class="btn btn-primary button" type="button" (click)="register()">Don't Have an
                 Account? SignUp</button>
         </div>
     </div>
