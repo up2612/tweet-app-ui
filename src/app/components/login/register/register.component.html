@@ -7,10 +7,14 @@
                 <label>Username*:</label>
                 <div>
                     <input type="text" name="userName" #userName="ngModel" [(ngModel)]="inputFormValues.userName"
-                        required>
+                       pattern="^(?![_.])(?!.*[_.]{2})[a-z0-9._]+(?<![_.])$" required>
                 </div>
-                <div [hidden]="userName.valid || userName.pristine">
+                <!-- <div [hidden]="userName.valid || userName.pristine">
                     <p class="alert alert-danger">Field is Required</p>
+                </div> -->
+                <div *ngIf="userName.touched">
+                    <p class="alert alert-danger" *ngIf="userName.errors?.required">Field is Required</p>
+                    <p class="alert alert-danger" *ngIf="userName.errors?.pattern">Username only contains lowercase characters</p>
                 </div>
 
                 <label>Password*:</label>
@@ -53,27 +57,27 @@
 
                 <label>Email Id*:</label>
                 <div>
-                    <input type="email" name="email" #email="ngModel" [(ngModel)]="inputFormValues.email"
+                    <input type="email" name="emailId" #emailId="ngModel" [(ngModel)]="inputFormValues.emailId"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 </div>
 
-                <div *ngIf="email.touched">
-                    <p class="alert alert-danger" *ngIf="email.errors?.required">Email is a required field!</p>
-                    <p class="alert alert-danger" *ngIf="email.errors?.pattern">This is not a valid Email!!!</p>
+                <div *ngIf="emailId.touched">
+                    <p class="alert alert-danger" *ngIf="emailId.errors?.required">Email is a required field!</p>
+                    <p class="alert alert-danger" *ngIf="emailId.errors?.pattern">This is not a valid Email!!!</p>
                 </div>
 
 
                 <label>Contact Number*:</label>
                 <div>
-                    <input type="text" name="contactNo" #contactNo="ngModel" [(ngModel)]="inputFormValues.contactNo"
+                    <input type="text" name="contactNumber" #contactNumber="ngModel" [(ngModel)]="inputFormValues.contactNumber"
                         pattern="^[1-9][0-9]{9}" required>
                 </div>
                 <!-- <div [hidden]="contactNo.valid || contactNo.pristine">
                     <p class="alert alert-danger">Field is Required</p>
                 </div> -->
-                <div *ngIf="contactNo.touched">
-                    <p class="alert alert-danger" *ngIf="contactNo.errors?.required">Field is Required!</p>
-                    <p class="alert alert-danger" *ngIf="contactNo.errors?.pattern">contactNumber should have 10 digits
+                <div *ngIf="contactNumber.touched">
+                    <p class="alert alert-danger" *ngIf="contactNumber.errors?.required">Field is Required!</p>
+                    <p class="alert alert-danger" *ngIf="contactNumber.errors?.pattern">contactNumber should have 10 digits
                         starting with nonzero</p>
                 </div>
 

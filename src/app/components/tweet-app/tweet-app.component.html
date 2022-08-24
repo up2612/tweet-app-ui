@@ -68,7 +68,7 @@
                     </div>
                     <div *ngIf="tweet.editTweetBool">
                         <textarea style="width: 100%; height: 2.7rem;" placeholder="Edited to Tweet"
-                            [(ngModel)]="tweet.tweet" (input)="checkTweetEdit(tweet)" maxlength="144" ></textarea>
+                            [(ngModel)]="tweet.tweet" (input)="checkTweetEdit(tweet)" [mention]="items" maxlength="144" ></textarea>
                         <div *ngIf="tweet.invalidEditTweet">
                             <div style="color: red;" class="error align-left">Length must be below 144 characters</div>
                         </div>
