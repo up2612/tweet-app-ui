@@ -10,13 +10,13 @@ export class LoginServiceService {
   url = "http://localhost:8000/api/v1.0/tweets/";
   constructor(private http:HttpClient) { }
   
-  login(userName:any,passWord:any):Observable<any>{
-    let query = {userName:userName,password:passWord};
-    return this.http.post(this.url+"login",query);
+  login(inputFormValues:any):Observable<any>{
+    // let query = {userName:userName,password:passWord};
+    return this.http.post(this.url+"login",inputFormValues);
   }
-  register(userName: any,password: any,firstName: any,lastName: any,emailId: any,contactNumber: any):Observable<any>{
-    let query = {userName:userName,password:password,firstName:firstName,lastName:lastName,emailId:emailId,contactNumber:contactNumber};
-    return this.http.post(this.url+"register",query);
+  register(inputFormValues:any):Observable<any>{
+    // let query = {userName:userName,password:password,firstName:firstName,lastName:lastName,emailId:emailId,contactNumber:contactNumber};
+    return this.http.post(this.url+"register",inputFormValues);
   }
   forgot(userName:any,passWord:any):Observable<any>{
     let query = {password:passWord};

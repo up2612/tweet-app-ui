@@ -2,29 +2,35 @@
 
     <div id="loginWrapper">
         <h1>Login Page</h1>
-        <span><b>Username:</b></span>
-        <div>
-            <input type="text" (input)="onchangeUserName()" [(ngModel)]="userName">
-        </div>
+        <form #loginForm = 'ngForm' name="loginForm">
+            <label>Username:</label>
+            <div>
+                <input type="text" name="userName" #userName="ngModel"
+                [(ngModel)]="inputFormValues.userName" required>
+            </div>
 
-        <span><b>Password:</b></span>
-        <div>
-            <input type="password" (input)="onchangePassWord()" [(ngModel)]="passWord">
-        </div>
+            <label>Password:</label>
+            <div>
+                <input type="password" name="password" #password="ngModel"
+                [(ngModel)]="inputFormValues.password" required>
+            </div>
 
-        <div>
-            <button [disabled]="disableButton" class="btn btn-success button" type="button" (click)="login()"> Login
-            </button>
-        </div>
+            <div>
+                <button [disabled]="!loginForm.form.valid" class="btn btn-success button" 
+                type="button" (click)="login()"> Login
+                </button>
+            </div>
 
-        <div>
-            <button class="btn btn-primary button" type="button" (click)="forgot()"> Forgot
-                Password?
-            </button>
-        </div>
-        <div>
-            <button class="btn btn-primary button" type="button" (click)="register()">Don't Have an
-                Account? SignUp</button>
-        </div>
+            <div>
+                <button class="btn btn-primary button" type="button" (click)="forgot()"> Forgot
+                    Password?
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-primary button" type="button" (click)="register()">Don't Have an
+                    Account? SignUp</button>
+            </div>
+
+        </form>
     </div>
 </div>

@@ -28,6 +28,7 @@ export class TweetAppComponent implements OnInit {
   profileIcon = faUser;
   items: string[] = [];
   anotherTweetBool: boolean = false;
+  anotherTweetUsername:any;
   constructor(private tweetService: TweetServiceService,
     private toastr: ToastrService,
     private loginService: LoginServiceService,
@@ -35,6 +36,7 @@ export class TweetAppComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = sessionStorage.getItem("USERNAME");
+    this.anotherTweetUsername = sessionStorage.getItem("ANOTHERTWEETUSERNAME")
     this.anotherTweetBool = sessionStorage.getItem("ANOTHERTWEETBOOL") === 'Y' ? true : false;
 
     this.getAllTweet();

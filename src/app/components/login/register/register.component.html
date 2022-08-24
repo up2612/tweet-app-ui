@@ -1,81 +1,92 @@
 <div class="register-main border-0 scroll-attr scrollbar-primary" [style.max-height.px]="maxHeight">
     <div id="registerWrapper" mat-dialog-content>
         <h2>Registration Page</h2>
-    <div >
         <div>
-            <span><b>Username:</b></span>
-            <div>
-                <input type="text" (change)="changeFunction()" [(ngModel)]="userName">
-            </div>
-            <div [hidden]="userName">
-                <div class="error align-left">Field is Required</div>
-            </div>
-            <span><b>Password:</b></span>
-            <div>
-                <input type="password" (change)="changeFunction()" [(ngModel)]="passWord">
-            </div>
-            <div [hidden]="passWord">
-                <div class="error align-left">Field is Required</div>
-            </div>
-            <span><b>Confirm Password:</b></span>
-            <div>
-                <input type="password" (change)="changeFunction()" [(ngModel)]="confirmPassWord">
-            </div>
-            <div [hidden]="confirmPassWord">
-                <div class="error align-left">Field is Required</div>
-            </div>
-            <div [hidden]="(passWord === confirmPassWord)">
-                <div class="error align-left">PassWord and ConfirmPassWord Must be Same</div>
-            </div>
+            <form #registrationForm='ngForm' name="registrationForm">
+
+                <label>Username*:</label>
+                <div>
+                    <input type="text" name="userName" #userName="ngModel" [(ngModel)]="inputFormValues.userName"
+                        required>
+                </div>
+                <div [hidden]="userName.valid || userName.pristine">
+                    <p class="alert alert-danger">Field is Required</p>
+                </div>
+
+                <label>Password*:</label>
+                <div>
+                    <input type="password" name="password" (input)="checkPassWord()" [(ngModel)]="inputFormValues.password" #password="ngModel"
+                        required>
+                </div>
+                <div [hidden]="password.valid || password.pristine">
+                    <p class="alert alert-danger">Field is Required</p>
+                </div>
+
+                <label>Confirm Password*:</label>
+                <div>
+                    <input type="password" (input)="checkPassWord()" name="confirmPassWord" #confirmPassWord="ngModel"
+                        [(ngModel)]="inputFormValues.confirmPassWord" required>
+                </div>
+
+                <div *ngIf="confirmPassWord.touched">
+                    <p class="alert alert-danger" *ngIf="confirmPassWord.errors?.required">Field is Required</p>
+                    <p class="alert alert-danger" *ngIf="flagForPassWord">PassWord and ConfirmPassWord Must be Same!</p>
+                </div>
+
+                <label>First Name*:</label>
+                <div>
+                    <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="inputFormValues.firstName"
+                        required>
+                </div>
+                <div [hidden]="firstName.valid || firstName.pristine">
+                    <p class="alert alert-danger">Field is Required</p>
+                </div>
+
+                <label>Last Name*:</label>
+                <div>
+                    <input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="inputFormValues.lastName"
+                        required>
+                </div>
+                <div [hidden]="lastName.valid || lastName.pristine">
+                    <p class="alert alert-danger">Field is Required</p>
+                </div>
+
+                <label>Email Id*:</label>
+                <div>
+                    <input type="email" name="email" #email="ngModel" [(ngModel)]="inputFormValues.email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                </div>
+
+                <div *ngIf="email.touched">
+                    <p class="alert alert-danger" *ngIf="email.errors?.required">Email is a required field!</p>
+                    <p class="alert alert-danger" *ngIf="email.errors?.pattern">This is not a valid Email!!!</p>
+                </div>
 
 
-            <span><b>First Name:</b></span>
-            <div>
-                <input type="text" (change)="changeFunction()" [(ngModel)]="firstName">
-            </div>
-            <div [hidden]="firstName">
-                <div class="error align-left">Field is Required</div>
-            </div>
+                <label>Contact Number*:</label>
+                <div>
+                    <input type="text" name="contactNo" #contactNo="ngModel" [(ngModel)]="inputFormValues.contactNo"
+                        pattern="^[1-9][0-9]{9}" required>
+                </div>
+                <!-- <div [hidden]="contactNo.valid || contactNo.pristine">
+                    <p class="alert alert-danger">Field is Required</p>
+                </div> -->
+                <div *ngIf="contactNo.touched">
+                    <p class="alert alert-danger" *ngIf="contactNo.errors?.required">Field is Required!</p>
+                    <p class="alert alert-danger" *ngIf="contactNo.errors?.pattern">contactNumber should have 10 digits
+                        starting with nonzero</p>
+                </div>
 
-            <span><b>Last Name:</b></span>
-            <div>
-                <input type="text" (change)="changeFunction()" [(ngModel)]="lastName">
-            </div>
-            <div [hidden]="lastName">
-                <div class="error align-left">Field is Required</div>
-            </div>
 
-            <span><b>Email Id:</b></span>
-            <div>
-                <input type="text" (change)="changeFunction();checkEmail()" [(ngModel)]="email">
-            </div>
-            <div [hidden]="email">
-                <div class="error align-left">Field is Required</div>
-            </div>
-            <div *ngIf="inValidEmail">
-                <div class="error align-left">Invalid Format</div>
-            </div>
-
-            <span><b>Contact Number:</b></span>
-            <div>
-                <input type="text" (change)="changeFunction();checkPhone()" [(ngModel)]="contactNo">
-            </div>
-            <div [hidden]="contactNo">
-                <div class="error align-left">Field is Required</div>
-            </div>
-            <div *ngIf="inValidPhone">
-                <div class="error align-left">contactNumber should have 10 digits starting with nonzero</div>
-            </div>
-
-            <div>
-                <button [disabled]="disabledButton" type="button" class="btn btn-success button"
-                    (click)="register()"> Register </button>
-            </div>
-            <div>
-                <button type="button" class="btn btn-primary button" (click)="cancel()"> Cancel
-                </button>
-            </div>
+                <div>
+                    <button [disabled]="!registrationForm.form.valid" type="button" class="btn btn-success button"
+                        (click)="register()"> Register </button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary button" (click)="cancel()"> Cancel
+                    </button>
+                </div>
+            </form>
         </div>
-    </div>
     </div>
 </div>

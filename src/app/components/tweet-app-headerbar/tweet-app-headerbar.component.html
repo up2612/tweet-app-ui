@@ -43,7 +43,9 @@
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
       <li *ngIf="flagForTweet" class="nav-item">
-        <a class="nav-link" (click)="logout()" href="/login">Logout</a>
+        <button class="btn btn-danger">
+        <a class="nav-link" style="color: white;" (click)="logout()" href="/login">Logout</a>
+      </button>
       </li>
     </ul>
   </div>

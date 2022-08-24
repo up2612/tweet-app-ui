@@ -1,6 +1,16 @@
 <app-tweet-app-headerbar></app-tweet-app-headerbar>
 <div class="tweet-app-main">
     <div id="tweetAppWrapper" style="margin-top: 10%;">
+        <ng-container *ngIf="anotherTweetBool">
+            <!-- <p style="text-align: center;">{{anotherTweetUsername}}</p> -->
+            <h3 style="text-align: center;">
+                <fa-icon [icon]="profileIcon"></fa-icon>
+                @{{anotherTweetUsername}}
+            </h3>
+        </ng-container>
+        <ng-container *ngIf="anotherTweetBool && allTweet?.length === 0">
+            <p style="text-align: center;">No Tweet for this User!</p>
+        </ng-container>
 
         <div class="container">
             <div *ngIf="!anotherTweetBool">
@@ -39,7 +49,7 @@
                             [styles]="{'margin':'5px','background':'transparent'}" size="2x">
 
                         </fa-icon>
-                        {{tweet.likeCount}}
+                        <span style="position: relative; top: -10px;">{{tweet.likeCount}}</span>
 
 
                         <fa-icon [icon]="replyIcon" (click)="replyToTweet(tweet)"

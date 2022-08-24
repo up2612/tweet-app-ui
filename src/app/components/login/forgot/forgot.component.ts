@@ -15,6 +15,8 @@ export class ForgotComponent implements OnInit {
   confirmPassWord: any;
   disabledButton: boolean = true;
   maxHeight:any = window.innerHeight - 200;
+  inputFormValues:any ={};
+  flagForPassWord: boolean = false;
   constructor(private dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) public dataDialog: any,
     private loginService: LoginServiceService,
@@ -23,17 +25,8 @@ export class ForgotComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChangeAttr() {
-    if (this.userName != undefined && this.userName.length > 0 
-      && this.passWord != undefined && this.passWord.length > 0 
-      && this.confirmPassWord != undefined && this.confirmPassWord.length > 0 
-      && this.confirmPassWord === this.passWord) {
-        this.disabledButton = false;
-    }
-  }
-
   changePassWord() {
-    this.loginService.forgot(this.userName, this.passWord).subscribe((result) => {
+    this.loginService.forgot(this.inputFormValues.userName, this.inputFormValues.passWord).subscribe((result) => {
       if(result){
         this.dialogRef.close();
         this.toastr.success("Successfully Passwword changed..","Forgot Password")
@@ -47,6 +40,16 @@ export class ForgotComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close({ event: 'closeButton' });
+  }
+  checkPassWord(){
+    if(this.inputFormValues.passWord != undefined 
+      && this.inputFormValues.confirmPassWord != undefined
+      && this.inputFormValues.passWord === this.inputFormValues.confirmPassWord){
+        this.flagForPassWord = false
+      }
+      else{
+        this.flagForPassWord = true;
+      }
   }
 
 }

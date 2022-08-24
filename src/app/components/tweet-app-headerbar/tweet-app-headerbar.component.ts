@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 import { ForgotComponent } from '../login/forgot/forgot.component';
 import { RegisterComponent } from '../login/register/register.component';
-import { TweetAppComponent } from '../tweet-app/tweet-app.component';
 
 @Component({
   selector: 'app-tweet-app-headerbar',

@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   userName: any;
   passWord: any;
   disableButton: boolean = true;
+  inputFormValues:any ={};
   constructor(public dialog: MatDialog,
     private loginService: LoginServiceService,
     private router: Router,
@@ -26,30 +27,12 @@ export class LoginComponent implements OnInit {
     this.destroySessionStorage();
   }
 
-  onchangeUserName() {
-    if (this.userName != undefined && this.userName.length > 0 && this.userName != null && this.userName != ""
-      && this.passWord != undefined && this.passWord.length > 0 && this.passWord != null && this.passWord != "") {
-      this.disableButton = false;
-    }
-    else {
-      this.disableButton = true;
-    }
-  }
-  onchangePassWord() {
-    if (this.userName != undefined && this.userName.length > 0 && this.userName != null && this.userName != ""
-      && this.passWord != undefined && this.passWord.length > 0 && this.passWord != null && this.passWord != "") {
-      this.disableButton = false;
-    }
-    else {
-      this.disableButton = true;
-    }
-  }
   login() {
-    this.loginService.login(this.userName, this.passWord).subscribe((result) => {
-
+    this.loginService.login(this.inputFormValues).subscribe((result) => {
+      console.log(this.inputFormValues);
       if (result) {
         sessionStorage.setItem("TWEET_TOKEN", result.token);
-        sessionStorage.setItem("USERNAME", this.userName);
+        sessionStorage.setItem("USERNAME", this.inputFormValues.userName);
         this.toastr.success("Successfully Login", "Login");
         this.router.navigate(['tweet-app']);
       }
@@ -60,7 +43,7 @@ export class LoginComponent implements OnInit {
       });
   }
   forgot() {
-    console.log("Clicked..")
+
     const dialogRef = this.dialog.open(ForgotComponent, {
       width: '35rem',
       panelClass: 'import-dialog-container',

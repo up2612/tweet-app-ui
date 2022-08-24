@@ -1,40 +1,44 @@
 <div class="forgot-main border-0 scroll-attr scrollbar-primary" [style.max-height.px]="maxHeight">
     <div id="forgotWrapper" mat-dialog-content>
-        <h2>Foegot Password</h2>
-        <span><b>Username:</b></span>
-        <div>
-            <input type="text" (change)="onChangeAttr()" [(ngModel)]="userName">
-        </div>
-        <div [hidden]="userName">
-            <div class="error align-left">Field is Required</div>
-        </div>
+        <form #forgotForm='ngForm' name="forgotForm">
+            <h2>Foegot Password</h2>
 
-        <span><b>Password:</b></span>
-        <div>
-            <input type="password" (change)="onChangeAttr()" [(ngModel)]="passWord">
-        </div>
-        <div [hidden]="passWord">
-            <div class="error align-left">Field is Required</div>
-        </div>
+            <label>Username*:</label>
+            <div>
+                <input type="text" name="userName" #userName="ngModel" [(ngModel)]="inputFormValues.userName" required>
+            </div>
+            <div [hidden]="userName.valid || userName.pristine">
+                <p class="alert alert-danger">Field is Required</p>
+            </div>
 
-        <span><b>Confirm Password:</b></span>
-        <div>
-            <input type="password" (change)="onChangeAttr()" [(ngModel)]="confirmPassWord">
-        </div>
-        <div [hidden]="confirmPassWord">
-            <div class="error align-left">Field is Required</div>
-        </div>
-        <div [hidden]="(passWord === confirmPassWord)">
-            <div class="error align-left">PassWord and ConfirmPassWord Must be Same</div>
-        </div>
+            <label>Password*:</label>
+            <div>
+                <input type="password" (input)="checkPassWord()" name="passWord" #passWord="ngModel" [(ngModel)]="inputFormValues.passWord"
+                    required>
+            </div>
+            <div [hidden]="passWord.valid || passWord.pristine">
+                <p class="alert alert-danger">Field is Required</p>
+            </div>
 
-        <div>
-            <button [disabled]="disabledButton" type="button" class="btn btn-success button" (click)="changePassWord()">
-                Change Password </button>
-        </div>
-        <div>
-            <button class="btn" class="btn btn-primary button" type="button" (click)="cancel()"> Cancel
-            </button>
-        </div>
+            <label>Confirm Password*:</label>
+            <div>
+                <input type="password" (input)="checkPassWord()" name="confirmPassWord" #confirmPassWord="ngModel"
+                    [(ngModel)]="inputFormValues.confirmPassWord" required>
+            </div>
+            <div *ngIf="confirmPassWord.touched">
+                <p class="alert alert-danger" *ngIf="confirmPassWord.errors?.required">Field is Required</p>
+                <p class="alert alert-danger" *ngIf="flagForPassWord">PassWord and ConfirmPassWord Must be Same!</p>
+            </div>
+
+            <div>
+                <button [disabled]="!forgotForm.form.valid" type="button" class="btn btn-success button"
+                    (click)="changePassWord()">
+                    Change Password </button>
+            </div>
+            <div>
+                <button class="btn" class="btn btn-primary button" type="button" (click)="cancel()"> Cancel
+                </button>
+            </div>
+        </form>
     </div>
 </div>
