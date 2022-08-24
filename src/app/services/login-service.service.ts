@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginServiceService {
-  url = "http://localhost:8000/api/v1.0/tweets/";
+  url = "http://localhost:8003/api/v1.0/tweets/";
   constructor(private http:HttpClient) { }
   
   login(inputFormValues:any):Observable<any>{

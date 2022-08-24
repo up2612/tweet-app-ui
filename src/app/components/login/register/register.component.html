@@ -7,14 +7,11 @@
                 <label>Username*:</label>
                 <div>
                     <input type="text" name="userName" #userName="ngModel" [(ngModel)]="inputFormValues.userName"
-                       pattern="^(?![_.])(?!.*[_.]{2})[a-z0-9._]+(?<![_.])$" required>
+                       pattern="^(?![_.])(?!.*[_.]{2})[a-z0-9]+(?<![_.])$" required>
                 </div>
-                <!-- <div [hidden]="userName.valid || userName.pristine">
-                    <p class="alert alert-danger">Field is Required</p>
-                </div> -->
                 <div *ngIf="userName.touched">
                     <p class="alert alert-danger" *ngIf="userName.errors?.required">Field is Required</p>
-                    <p class="alert alert-danger" *ngIf="userName.errors?.pattern">Username only contains lowercase characters</p>
+                    <p class="alert alert-danger" *ngIf="userName.errors?.pattern">Username can only have<br>1. lowercase<br>2. digits</p>
                 </div>
 
                 <label>Password*:</label>
@@ -58,7 +55,7 @@
                 <label>Email Id*:</label>
                 <div>
                     <input type="email" name="emailId" #emailId="ngModel" [(ngModel)]="inputFormValues.emailId"
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        pattern="[a-z0-9._%+-]+@[a-z.-]+\.[a-z]{2,4}$" required>
                 </div>
 
                 <div *ngIf="emailId.touched">
